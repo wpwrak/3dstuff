@@ -1,0 +1,17 @@
+Support for the tiltable display of the Kuttercraft [1] 2017 3D
+printer.
+
+To change the tilt angle, change the height of both sides of the
+vertical protrusion by the same amount.
+
+This is my first design using Solvespace [2], and especially the
+tangent arc feature was very useful for making all the nice
+rounded corners.
+
+The installed part (white) is shown on
+https://github.com/wpwrak/3dstuff/blob/master/scrnsup/front.jpg
+and
+https://github.com/wpwrak/3dstuff/blob/master/scrnsup/side.jpg
+
+[1] http://www.kuttercraft.com/
+[2] http://solvespace.com/
