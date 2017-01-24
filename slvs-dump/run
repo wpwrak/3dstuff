@@ -1,0 +1,77 @@
+#!/bin/sh
+#
+# A1 is a 10 x 10 square, A2 is the same square but with size 15 x 15.
+# B uses A (A1 or A2) in an assembly and extends it to a rectangle 2 N x N.
+# C extends B to a square 2 N x 2 N.
+#
+# B and then C were generated with A = A1. We call this original B "B1".
+#
+# If a part file changes, SolveSpace updates any assembly using this file
+# directly when loading it. However, it does not perform such an update if
+# the the part file used in the assembly is the same but a file it uses has
+# changed.
+#
+# I.e., if we alternate A between A1 and A2, but keep B = B1, we get, when
+# exporting C:
+#
+# A1 -> B = 20 x 10		b1.pdf
+# A2 -> B = 30 x 15		b2.pdf
+# A1 -> B -> C = 20 x 20	c1a.pdf
+# A2 -> B -> C = 20 x 20	c2a.pdf
+#
+# If we dump (load and save) B before exporting C, we get
+#
+# A1 -> B -> C = 20 x 20	c1b.pdf
+# A2 -> B -> C = 30 x 30	c12b.pdf
+#
+# instead.
+#
+# The script below generates these exports. View with
+# for n in *.pdf; do xpdf -z 400 $n; done
+#
+
+
+a1()
+{
+	cp a1.slvs a.slvs
+}
+
+a2()
+{
+	cp a2.slvs a.slvs
+}
+
+b1()
+{
+	cp b1.slvs b.slvs
+}
+
+bx()
+{
+	solvespace-cli dump -o b.slvs b1.slvs
+}
+
+
+# Dump B using A1
+a1
+solvespace-cli export-view -v top -o b1.pdf b1.slvs
+
+# Dump B using A2
+a2
+solvespace-cli export-view -v top -o b2.pdf b1.slvs
+
+# Dump C using A1, with B = B1
+a2; b1
+solvespace-cli export-view -v top -o c1a.pdf c.slvs
+
+# Dump C using A1, with B updated accordingly
+a1; bx
+solvespace-cli export-view -v top -o c1b.pdf c.slvs
+
+# Dump C using A2, with B = B1
+a2; b1
+solvespace-cli export-view -v top -o c2a.pdf c.slvs
+
+# Dump C using A2, with B updated accordingly
+a2; bx
+solvespace-cli export-view -v top -o c2b.pdf c.slvs
