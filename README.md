@@ -1,5 +1,5 @@
 # 3dstuff
-Assorted 3D printing and CNC experiments
+Assorted 3D design, printing, and CNC experiments
 
 Everything in this repository is intended for public consumption and
 reuse. If you make statements about authorship or origin of any material
