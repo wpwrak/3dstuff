@@ -1,0 +1,16 @@
+base.slvs			basic filemant holder, based on holders
+				shipped with Kuttercraft (2017 model) printer
+
+base -> left-ext.slvs		extension into 3D, left side
+base -> right-ext.slvs		extension into 3D, right side (SolveSpace
+				doesn't support mirroring yet, which is why we
+				have to do this for each side
+left-ext -> cut.slvs		hollowing-out of the support structure
+
+left-ext, cut ->  left.slvs	final part, left side
+right-ext, cut -> right.slvs	final part, right side
+
+To generate basic STLs, "make stl"
+
+To improve arcs, load left.slvs and right.slvs into SolveSpace and decrease
+the export chord tolerance, then generate triangle mesh.
