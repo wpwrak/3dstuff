@@ -14,3 +14,6 @@ To generate basic STLs, "make stl"
 
 To improve arcs, load left.slvs and right.slvs into SolveSpace and decrease
 the export chord tolerance, then generate triangle mesh.
+
+Print time: 5 1/4 hours (on Kuttercraft 2017)
+Weight: 2 x 13 g with support, 2 x 12 g after removing support.
